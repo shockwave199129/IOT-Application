@@ -1,13 +1,19 @@
 [BASIC]
-project_name = Survey-Ai
+project_name = IOT - api
+api_base_url = 
+web_base_url = 
 
 [DATABASE]
-db_scheme = mysql
-db_server = dbdata
-db_port = 3306
+db_scheme = mongodb
+db_server = mongodb
+db_port = 27017
 db_user = root
 db_password = 12345
-db_database = WhiteCanvas
+db_database = IOT_database
+
+[Redis]
+REDIS_HOST = redis
+REDIS_PORT = 6379
 
 [MAIL]
 mail_mailer = smtp
@@ -22,9 +28,8 @@ mail_from_name = test mail
 [AWS]
 aws_access_key_id = 
 aws_secret_access_key = 
-region_name = 
-bucket_name = 
+region_name =
+bucket_name =
 
 [SECRET]
-secret_key = jgA6EOs43yhCin9Ee_W2n96v9kG_pFQjSx9Ge4X-YNrZJZ-9hmSrGR4a0nMT5rMpPl8sHmJhEyAhGkh08fX4ow
-
+secret_key = OTy8QwcxZvc4Ih_uqA7HCx81iQ7-z1ipik5hYoDoOlIrFoa9pKmgYboUtvvNXY4fpyDMkKFUNtCycvZzJfJzPQ
