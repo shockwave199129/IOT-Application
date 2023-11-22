@@ -1,0 +1,13 @@
+fastapi  # FastAPI framework
+fastapi_utils
+uvicorn  # ASGI server for FastAPI
+pydantic[email]  # Data validation and parsing using Python type hints
+motor  # MongoDB asynchronous driver
+uvloop  # Event loop for faster ASGI applications
+aioredis  # Asynchronous Redis client
+configparser
+passlib
+Crypto
+python-jose
+datetime
+python-multipart

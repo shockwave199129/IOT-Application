@@ -1,0 +1,30 @@
+[BASIC]
+project_name = Survey-Ai
+
+[DATABASE]
+db_scheme = mysql
+db_server = dbdata
+db_port = 3306
+db_user = root
+db_password = 12345
+db_database = WhiteCanvas
+
+[MAIL]
+mail_mailer = smtp
+mail_host = sandbox.smtp.mailtrap.io
+mail_port = 587
+mail_user = d7636bb9302178
+mail_password = 462d922e5153e7
+mail_encryption = tls
+mail_from_address = mygoogle@gmail.com
+mail_from_name = test mail
+
+[AWS]
+aws_access_key_id = AKIA5PBWFTTYJ4UDVQND
+aws_secret_access_key = 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
+region_name = ap-south-1
+bucket_name = surveyai
+
+[SECRET]
+secret_key = jgA6EOs43yhCin9Ee_W2n96v9kG_pFQjSx9Ge4X-YNrZJZ-9hmSrGR4a0nMT5rMpPl8sHmJhEyAhGkh08fX4ow
+
