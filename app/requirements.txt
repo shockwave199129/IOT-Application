@@ -11,3 +11,4 @@ Crypto
 python-jose
 datetime
 python-multipart
+python-dotenv
