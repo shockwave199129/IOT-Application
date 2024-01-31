@@ -66,4 +66,4 @@ async def user_details(user: dict = Depends(authenticate_token)) -> JSONResponse
     ]
     result = await mongo_db.client.IOT_database.users.aggregate(pipeline).to_list(None)
 
-    return JSONResponse(content=result, status_code=200)
+    return JSONResponse(content=result[0], status_code=200)

@@ -1,7 +1,9 @@
 import React from "react";
-import { useEffect } from "react";
+import { useEffect, useState } from "react";
 import cookie from 'js-cookie';
 import { useNavigate } from 'react-router-dom';
+
+import Api from "./api";
 
 export default function TopBar({ pageName }) {
 
@@ -11,6 +13,8 @@ export default function TopBar({ pageName }) {
     const sidenav = document.getElementById('sidenav-main');
     let body = document.getElementsByTagName('body')[0];
     let className = 'g-sidenav-pinned';
+
+    var [logedUser, setLogedUser] = useState('User')
 
     function toggleSidenav() {
         if (body.classList.contains(className)) {
@@ -30,11 +34,20 @@ export default function TopBar({ pageName }) {
 
     function userLogout() {
         cookie.remove('IOT_APP_AUTH')
-
+        cookie.remove('IOT_APP_USER')
         navigate('/login')
     }
 
     useEffect(() => {
+
+        let user_info = cookie.get('IOT_APP_USER');
+
+        if (user_info === '' || typeof user_info === 'undefined') {
+
+        } else {
+            let __v = JSON.parse(user_info)
+            setLogedUser(__v.username)
+        }
         /* if (iconNavbarSidenav) {
             iconNavbarSidenav.addEventListener("click", (event)=>{
                 event.preventDefault();
@@ -68,7 +81,7 @@ export default function TopBar({ pageName }) {
                 <nav aria-label="breadcrumb" className="d-flex">
                     <ol className="breadcrumb bg-transparent mb-0 pb-0 pt-1 px-0 me-sm-3 me-3">
                         <li className="nav-item d-xl-none ps-3 d-flex align-items-center">
-                            <a href="#" className="nav-link text-body p-0" onClick={e=>{e.preventDefault();toggleSidenav()}} id="iconNavbarSidenav">
+                            <a href="#" className="nav-link text-body p-0" onClick={e => { e.preventDefault(); toggleSidenav() }} id="iconNavbarSidenav">
                                 <div className="sidenav-toggler-inner">
                                     <i className="sidenav-toggler-line"></i>
                                     <i className="sidenav-toggler-line"></i>
@@ -80,8 +93,8 @@ export default function TopBar({ pageName }) {
                     <h4 className="font-weight-bolder mb-0">{pageName}</h4>
                 </nav>
                 <nav className="float-end d-flex justify-content-end">
-                    <h6 className="me-3 ms-2 m-0">User</h6>
-                    <h6 className="m-0"><a href="#" onClick={e=>{e.preventDefault(); userLogout()}}>Logout</a></h6>
+                    <h6 className="me-3 ms-2 m-0">{logedUser}</h6>
+                    <h6 className="m-0"><a href="#" onClick={e => { e.preventDefault(); userLogout() }}>Logout</a></h6>
                 </nav>
             </div>
         </nav>

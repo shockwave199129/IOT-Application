@@ -1,6 +1,8 @@
-const { app, BrowserWindow } = require('electron');
+const { app, BrowserWindow, ipcMain } = require('electron');
 const isDev = require('electron-is-dev');
-const path = require('path');
+const path = require('node:path');
+
+//const { exec, spawn } = require('child_process');
 
 require('@electron/remote/main').initialize()
 
@@ -48,6 +50,31 @@ app.on('window-all-closed', () => {
     if (process.platform !== 'darwin') {
         app.quit();
     }
+});
+
+app.on('ready', () => {
+    app.on('window-all-closed', () => {
+        app.quit();
+    });
+
+    ipcMain.on('runScript', (event, scriptPath) => {
+        const childProcess = spawn('python3', [path.join(scriptPath)]);
+    
+        childProcess.stdout.on('data', (data) => {
+            event.reply('scriptData', data.toString());
+        });
+    
+        childProcess.stderr.on('data', (data) => {
+            console.error('Script error:', data.toString());
+        });
+    
+        childProcess.on('close', (code) => {
+            if (code !== 0) {
+                console.error('Script exited with code:', code);
+            }
+        });
+    });
+    
 });
 
 app.on('activate', () => {

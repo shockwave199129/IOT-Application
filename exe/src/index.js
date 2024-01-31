@@ -11,6 +11,7 @@ import App from './App';
 import Login from './pages/login';
 import Regester from './pages/regester';
 import Control from './pages/control';
+import DeviceRegister from './pages/deviceRegister';
 
 import reportWebVitals from './reportWebVitals';
 
@@ -30,6 +31,10 @@ const router = createBrowserRouter([
 	{
 		path: '/control/:device_id',
 		element: <Control />
+	},
+	{
+		path: '/devices',
+		element: <DeviceRegister />
 	}
 ]);
 

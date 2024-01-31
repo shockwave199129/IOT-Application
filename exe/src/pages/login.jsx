@@ -31,14 +31,19 @@ export default function Login() {
     const { errors, touched, values, handleChange, handleSubmit, setFieldValue } = formik;
 
     function HandlePostBtn(values) {
-        Api().Post('login', values).then((res)=>{
-            if(res.status == 200) {
-                
-                Promise.resolve(cookie.set('IOT_APP_AUTH', JSON.stringify(res.data), {expires: 3, path : '/'})).then(
+        Api().Post('login', values).then((res) => {
+            if (res.status == 200) {
+
+                Promise.resolve(cookie.set('IOT_APP_AUTH', JSON.stringify(res.data), { expires: 3, path: '/' })).then(() => {
+                    Api().Get('me').then(res => {
+                        if (res.status === 200) {
+                            cookie.set('IOT_APP_USER', JSON.stringify(res.data), { expires: 3, path: '/' })
+                        }
+                    })
                     navigate('/')
-                )
+                })
             }
-        }).catch((error)=>{
+        }).catch((error) => {
             console.log(error)
         })
     }
@@ -79,7 +84,7 @@ export default function Login() {
                                             </div>
                                             <p className="mt-4 text-sm text-center">
                                                 Don't have an account?
-                                                <a href="#" onClick={e => { e.preventDefault(); navigate('/regester')}}
+                                                <a href="#" onClick={e => { e.preventDefault(); navigate('/regester') }}
                                                     className="text-primary text-gradient font-weight-bold">Sign up</a>
                                             </p>
                                         </form>
